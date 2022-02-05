@@ -1,0 +1,64 @@
+<div class="mat-elevation-z8">
+  <div class="demo-button-container">
+    <button mat-raised-button class="demo-button">
+      Reset
+    </button>
+    <button mat-raised-button class="demo-button"
+      (click)="openDialog()">
+      Add a Company Staff
+    </button>
+  </div>
+
+  <table mat-table [dataSource]="dataSource">
+
+    <!-- Name Column -->
+    <ng-container matColumnDef="Name">
+      <th mat-header-cell *matHeaderCellDef> Name </th>
+      <td mat-cell *matCellDef="let element"> {{ element.civility }} {{ element.first_name }} {{ element.last_name }} </td>
+    </ng-container>
+
+    <!-- Weight Column -->
+    <ng-container matColumnDef="User_type">
+      <th mat-header-cell *matHeaderCellDef> User_type </th>
+      <td mat-cell *matCellDef="let element"> {{ element.company.user_type }} </td>
+    </ng-container>
+
+    <!-- Symbol Column -->
+    <ng-container matColumnDef="Entity">
+      <th mat-header-cell *matHeaderCellDef> Entity </th>
+      <td mat-cell *matCellDef="let element"> {{ element.company.name }} </td>
+    </ng-container>
+
+    <ng-container matColumnDef="Status">
+      <th mat-header-cell *matHeaderCellDef> Status </th>
+      <td mat-cell *matCellDef="let element"> {{ element.user_status }} </td>
+    </ng-container>
+
+    <ng-container matColumnDef="Action">
+      <th mat-header-cell *matHeaderCellDef> Action </th>
+      <td mat-cell *matCellDef="let element">
+        <div class="demo-button-container">
+          <button mat-mini-fab class="demo-button">
+            <mat-icon>edit</mat-icon>
+          </button>
+          <button mat-mini-fab class="demo-button">
+            <mat-icon>mail</mat-icon>
+          </button>
+          <button mat-mini-fab class="demo-button">
+            <mat-icon>close</mat-icon>
+          </button>
+        </div>
+      </td>
+    </ng-container>
+
+    <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+    <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+  </table>
+
+  <mat-paginator [pageSizeOptions]="[5, 10, 20]"
+                  showFirstLastButtons
+                  aria-label="Select page of periodic elements">
+  </mat-paginator>
+</div>
+
+<router-outlet></router-outlet>
